@@ -146,8 +146,8 @@
         size_hint_y: None
         size_hint_x: None
         width: 50
-        height: 50
-        pos: 10, 635
+        height: 40
+        pos: 10, 655
 
     Label:
         text: "ECOKARD"
@@ -230,7 +230,7 @@
             background_color: .52, .43, .25, .95
             on_release:
                 root.manager.transition.direction = "right"
-                root.howItWorks()
+                root.howWorks()
 
 
 
@@ -252,16 +252,17 @@
         pos_hint: {"x":0.1, "top":1.06}
         font_size: (root.width**2 + root.height**2) / 12**4
 
+    Image:
+        source: "logo.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: 50
+        height: 40
+        pos: 10, 655
+
     FloatLayout:
-        Image:
-            source: "logo.png"
-            allow_stretch: True
-            keep_ratio: True
-            size_hint_y: None
-            size_hint_x: None
-            width: 50
-            height: 50
-            pos: 10, 635
 
         Label:
             id: n
@@ -294,7 +295,7 @@
 
                 #user's points
         Label:
-            text: "Points: "
+            text: "Points: 5"
             color: 255, 255, 255, 1
             font_size: (root.width**2 + root.height**2) / 15**4
             pos_hint: {"x":0.68, "top":1.04}
@@ -317,20 +318,22 @@
         pos_hint: {"x":0.1, "top":1.06}
         font_size: (root.width**2 + root.height**2) / 12**4
 
+    Image:
+        source: "logo.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: 50
+        height: 40
+        pos: 10, 655
+
     FloatLayout:
         cols:1
 
         FloatLayout:
             size: root.width, root.height/2
-            Image:
-                source: "logo.png"
-                allow_stretch: True
-                keep_ratio: True
-                size_hint_y: None
-                size_hint_x: None
-                width: 50
-                height: 50
-                pos: 10, 635
+
 
             Label:
                 text: "[b]Thank you \n for doing yout part![/b]"
@@ -362,7 +365,7 @@
 
                #user's points
         Label:
-            text: "Points: "
+            text: "Points: 5"
             color: 255, 255, 255, 1
             font_size: (root.width**2 + root.height**2) / 15**4
             pos_hint: {"x":0.68, "top":1.04}
@@ -384,20 +387,21 @@
         pos_hint: {"x":0.1, "top":1.06}
         font_size: (root.width**2 + root.height**2) / 12**4
 
+    Image:
+        source: "logo.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: 50
+        height: 40
+        pos: 10, 655
+
     FloatLayout:
         cols:1
 
         FloatLayout:
             size: root.width, root.height/2
-            Image:
-                source: "logo.png"
-                allow_stretch: True
-                keep_ratio: True
-                size_hint_y: None
-                size_hint_x: None
-                width: 50
-                height: 50
-                pos: 10, 635
 
             #HOW IT WORKS
             Label:
@@ -463,12 +467,6 @@
                 root.manager.transition.direction = "right"
                 root.homePage()
                 #user's points
-        Label:
-            text: "Points: "
-            color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 15**4
-            pos_hint: {"x":0.68, "top":1.04}
-            size_hint: 0.4, 0.15
 
 #################################################################################
 
@@ -498,18 +496,17 @@
         pos_hint: {"x":0.1, "top":1.06}
         font_size: (root.width**2 + root.height**2) / 12**4
 
+    Image:
+        source: "logo.png"
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: 50
+        height: 40
+        pos: 10, 655
+
     FloatLayout:
-
-        Image:
-            source: "logo.png"
-            allow_stretch: True
-            keep_ratio: True
-            size_hint_y: None
-            size_hint_x: None
-            width: 50
-            height: 50
-            pos: 10, 635
-
         # Questionaaire
 
         #intro
@@ -645,7 +642,7 @@
 
         #user's points
         Label:
-            text: "Points: "
+            text: "Points: 5"
             color: 255, 255, 255, 1
             font_size: (root.width**2 + root.height**2) / 15**4
             pos_hint: {"x":0.68, "top":1.04}
