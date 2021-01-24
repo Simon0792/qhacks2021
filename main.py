@@ -212,7 +212,7 @@ for screen in screens:
     sm.add_widget(screen)
 
 # FIRST WINDOW -- HOME PAGE
-sm.current = "login"
+sm.current = "create"
 
 
 class MyMainApp(App):
