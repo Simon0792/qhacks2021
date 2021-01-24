@@ -2,7 +2,7 @@
     name: "ScreenManager"
     canvas.before:
         Color:
-            rgba: 224, 226, 219, 1
+            rgba: .87, .88, .85, 1
         Rectangle:
             pos: self.pos
             size: self.size
@@ -15,6 +15,19 @@
     email: email
     password: passw
 
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
+
     FloatLayout:
         cols:1
         FloatLayout:
@@ -24,7 +37,7 @@
                 text: "Create an Account"
                 color: 255, 255, 255, 1
                 size_hint: 0.8, 0.2
-                pos_hint: {"x":0.1, "top":1}
+                pos_hint: {"x":0.1, "top":.98}
                 font_size: (root.width**2 + root.height**2) / 11.5**4
 
             Label:
@@ -75,6 +88,7 @@
             size_hint: 0.29, 0.07
             font_size: (root.width**2 + root.height**2) / 13**4
             text: "Submit"
+            background_color: 82, .93, .74, 1
             on_release:
                 root.manager.transition.direction = "left"
                 root.submit()
@@ -99,11 +113,25 @@
 
 
 
+
 <LoginWindow>:
     name: "login"
 
     email: email
     password: password
+
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
 
     FloatLayout:
 
@@ -111,7 +139,7 @@
             text: "Login"
             color: 255, 255, 255, 1
             size_hint: 0.8, 0.2
-            pos_hint: {"x":0.1, "top":1}
+            pos_hint: {"x":0.1, "top":.98}
             font_size: (root.width**2 + root.height**2) / 12**4
 
         Label:
@@ -148,7 +176,7 @@
             size_hint: 0.28, 0.06
             font_size: (root.width**2 + root.height**2) / 13**4
             text: "Login"
-            color: 1, 1, 1, 1
+            background_color: 82, .93, .74, 1
             on_release:
                 root.manager.transition.direction = "left"
                 root.loginBtn()
@@ -170,16 +198,41 @@
                 root.manager.transition.direction = "right"
                 root.createBtn()
 
+        Button:
+            pos_hint:{"x":0.36,"y":0.1}
+            size_hint: 0.3, 0.1
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "How It Works"
+            color: 1, 1, 1, 1
+            background_color: .52, .43, .25, .95
+            on_release:
+                root.manager.transition.direction = "right"
+                root.howItWorks()
+
+
 
 <MainWindow>:
     n: n
     email: email
     created:created
 
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
+
     FloatLayout:
         Label:
             id: n
-            pos_hint:{"x": 0.1, "top":0.9}
+            pos_hint:{"x": 0.1, "top":0.88}
             size_hint:0.8, 0.2
             text: "Account Name: "
             color: 54, 73, 88, 1
@@ -206,9 +259,30 @@
                 app.root.current = "login"
                 root.manager.transition.direction = "left"
 
+                #user's points
+        Label:
+            text: "Points: "
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            pos_hint: {"x":0.68, "top":1.04}
+            size_hint: 0.4, 0.15
+
 
 <thankYouWindow>:
     name: "thankyou"
+
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
 
     FloatLayout:
         cols:1
@@ -239,12 +313,34 @@
             size_hint: 0.25, 0.08
             font_size: (root.width**2 + root.height**2) / 14**4
             text: "SIGN OUT"
+            background_color: 82, .93, .74, 1
             on_release:
                 root.manager.transition.direction = "right"
                 root.logOut()
 
+               #user's points
+        Label:
+            text: "Points: "
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            pos_hint: {"x":0.68, "top":1.04}
+            size_hint: 0.4, 0.15
+
 <howItWorksWindow>:
     name: "howitworks"
+
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
 
     FloatLayout:
         cols:1
@@ -308,13 +404,20 @@
 
         Button:
             pos_hint:{"x":0.37,"y":0.03}
-
             size_hint: 0.25, 0.08
             font_size: (root.width**2 + root.height**2) / 14**4
             text: "Home"
+            background_color: 82, .93, .74, 1
             on_release:
                 root.manager.transition.direction = "right"
-                root.login()
+                root.homePage()
+                #user's points
+        Label:
+            text: "Points: "
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            pos_hint: {"x":0.68, "top":1.04}
+            size_hint: 0.4, 0.15
 
 #################################################################################
 
@@ -327,98 +430,172 @@
     questionThree: questionThree
     questionFour: questionFour
     questionFive: questionFive
+    conditions: conditions
+    text_input: text_input
+
+
+    canvas.before:
+        Color:
+            rgba: .82, .93, .74, 1
+        Rectangle:
+            pos: 0, 648
+            size: 400, 55
+    Label:
+        text: "ECOKARD"
+        color: 255, 255, 255, 1
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "top":1.06}
+        font_size: (root.width**2 + root.height**2) / 12**4
 
     FloatLayout:
         # Questionaaire
+
+        #intro
+        Label:
+            text: "[b]Answer the questionnaire\nand earn points![/b]"
+            color: 255, 255, 255, 1
+            markup: True
+            halign: 'left'
+            size_hint: 0.58, -0.17
+            pos_hint: {"x":.06, "top":.8}
+            font_size: (root.width**2 + root.height**2) / 13**4
+
         # Q.1
         Label:
-            text:"Q1: \nline Two\nline Three"
+            text:"Q1: I rinsed out my food containers\nand can ensure there are no large\nchunks or pockets of food/liquid"
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 16**4
-            pos_hint: {"x":0.05, "top":0.95}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            halign: 'left'
+            pos_hint: {"x":0.15, "top":0.85}
             size_hint: 0.4, 0.15
 
-        TextInput:
+        ToggleButton:
             id: questionOne
             font_size: (root.width**2 + root.height**2) / 16**4
             multiline: False
-            pos_hint: {"x": 0.11 , "top":0.82}
-            size_hint: 0.8, 0.05
+            pos_hint: {"x": 0.78 , "top":0.80}
+            size_hint: 0.14, 0.055
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Yes"
+
 
         # Q.2
         Label:
-            text:"Q2: \nline Two\nline Three"
+            text:"Q2: I checked my bins to make sure\nthey are separated properly."
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 16**4
-            pos_hint: {"x":0.05, "top":0.77}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            halign: 'left'
+            pos_hint: {"x":0.15, "top":0.75}
             size_hint: 0.4, 0.15
 
-        TextInput:
+        # REMEMBER
+        Button:
+            text:"REMEMBER:"
+            color: 1, 1, 1, 1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            halign: 'left'
+            background_color: 82, .93, .74, 1
+            pos_hint: {"x":0.54, "top":0.67}
+            size_hint: 0.18, 0.03
+            on_release:
+                root.rememberPop()
+
+        ToggleButton:
             id: questionTwo
             font_size: (root.width**2 + root.height**2) / 16**4
             multiline: False
-            pos_hint: {"x": 0.11 , "top":0.64}
-            size_hint: 0.8, 0.05
+            pos_hint: {"x": 0.78 , "top":0.70}
+            size_hint: 0.14, 0.055
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Yes"
 
         # Q.3
         Label:
-            text:"Q3: \nline Two\nline Three"
+            #text:"Q3: Items such as batteries,\nyard waste and household hazardous waste\nhave not been put out for curb-side pick up.\nI have read Kingston’s policies\non such material and plan on any\nof such material to the appropriate drop-off locations."
+            text:"Q3: I have not included any batteries or\nhazardous waste in my curb-side pick up."
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 16**4
-            pos_hint: {"x":0.05, "top":0.59}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            halign: 'left'
+            pos_hint: {"x":0.2, "top":0.65}
             size_hint: 0.4, 0.15
 
-        TextInput:
+        ToggleButton:
             id: questionThree
             font_size: (root.width**2 + root.height**2) / 16**4
             multiline: False
-            pos_hint: {"x": 0.11 , "top":0.46}
-            size_hint: 0.8, 0.05
+            pos_hint: {"x": 0.78 , "top":0.60}
+            size_hint: 0.14, 0.055
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Yes"
 
         # Q.4
         Label:
-            text:"Q4: \nline Two\nline Three"
+            text:"Q4: If there were any items that I was\nuncertain about, I referred to the Kingston\nwebsite and ‘Kingston Waste’ mobile app\nto ensure proper disposal. "
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 16**4
-            pos_hint: {"x":0.05, "top":0.41}
-            size_hint: 0.4, 0.15
+            font_size: (root.width**2 + root.height**2) / 14.1**4
+            halign: 'left'
+            pos_hint: {"x":0.2, "top":0.50}
+            size_hint: 0.4, 0.1
 
-        TextInput:
+        ToggleButton:
             id: questionFour
             font_size: (root.width**2 + root.height**2) / 16**4
             multiline: False
-            pos_hint: {"x": 0.11 , "top":0.28}
-            size_hint: 0.8, 0.05
+            pos_hint: {"x": 0.78 , "top":0.48}
+            size_hint: 0.14, 0.055
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Yes"
 
         # Q.5
         Label:
-            text:"Q5: \nline Two\nline Three"
+            text:"Q5: I have checked to make sure\nthere are no recyclable or compostable\nmaterial in the garbage bag(s) "
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 16**4
-            pos_hint: {"x":0.05, "top":0.23}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            halign: 'left'
+            pos_hint: {"x":0.18, "top":0.39}
             size_hint: 0.4, 0.15
 
-        TextInput:
+        ToggleButton:
             id: questionFive
             font_size: (root.width**2 + root.height**2) / 16**4
             multiline: False
-            pos_hint: {"x": 0.11 , "top":0.10}
-            size_hint: 0.8, 0.05
+            pos_hint: {"x": 0.78 , "top":0.34}
+            size_hint: 0.14, 0.055
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Yes"
+
+        # CONDITIONS
+        Label:
+            text:"I made an honest effort to sort material properly throughout the week and I certify\nthat the information provided is true to my best knowledge. I understand that\nfailure to provide accurate information may result in fines or penalties "
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.31, "top":0.29}
+            size_hint: 0.4, 0.15
+
+        ToggleButton:
+            id: conditions
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.03 , "top":0.24}
+            size_hint: 0.06, 0.03
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "X"
 
         #user's points
         Label:
             text: "Points: "
             color: 255, 255, 255, 1
-            font_size: (root.width**2 + root.height**2) / 18**4
+            font_size: (root.width**2 + root.height**2) / 15**4
             pos_hint: {"x":0.68, "top":1.04}
             size_hint: 0.4, 0.15
 
         #####------------------------------------
         # page Uploading image
         Button:
-            pos_hint:{"x":0.37,"y":0.35}
+            pos_hint:{"x":0.13,"y":0.1}
             size_hint: 0.28, 0.06
             font_size: (root.width**2 + root.height**2) / 13**4
+            id: text_input
             text: "Upload"
             #background_color: 60, 130, 207, 1
             color: 1, 1, 1, 1
@@ -427,10 +604,10 @@
 
         Button:
             text: 'Submit'
-            pos_hint:{"x":0.50,"y":0.50}
+            pos_hint:{"x":0.58,"y":0.1}
             size_hint: 0.28, 0.06
             font_size: (root.width**2 + root.height**2) / 13**4
-            #background_color: 60, 130, 207, 1
+            background_color: 82, .93, .74, 1
             color: 1, 1, 1, 1
             on_release: root.submit()
 
