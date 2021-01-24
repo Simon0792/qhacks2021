@@ -1,0 +1,293 @@
+<WindowManager>:
+    name: "ScreenManager"
+    canvas.before:
+        Color:
+            rgba: 224, 226, 219, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<signUpWindow>:
+    name: "create"
+
+    fullName: fullName
+    email: email
+    password: passw
+
+    FloatLayout:
+        cols:1
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                color: 54, 73, 88, 1
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 11.5**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.84}
+                text: "Name: "
+                color: 54, 73, 88, 1
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.8}
+                size_hint: 0.4, 0.05
+                id: fullName
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.48,0.12
+                pos_hint: {"x":0, "top":0.75}
+                text: "Email: "
+                color: 54, 73, 88, 1
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.71}
+                size_hint: 0.4, 0.05
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.48,0.12
+                pos_hint: {"x":0, "top":0.66}
+                text: "Password: "
+                color: 54, 73, 88, 1
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.62}
+                size_hint: 0.4, 0.05
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.40}
+            size_hint: 0.4, 0.08
+            font_size: (root.width**2 + root.height**2) / 15**4
+            halign: 'center'
+            text: "Already have\nan Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.25,"y":0.28}
+            size_hint: 0.5, 0.10
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
+
+    FloatLayout:
+
+        Label:
+            text:"Email: "
+            color: 54, 73, 88, 1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+            text:"Password: "
+            color: 54, 73, 88, 1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Login"
+            color: 54, 73, 88, 1
+            on_release:
+                root.manager.transition.direction = "left"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.3}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    n: n
+    email: email
+    created:created
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "Account Name: "
+            color: 54, 73, 88, 1
+
+        Label:
+            id: email
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "Email: "
+            color: 54, 73, 88, 1
+
+        Label:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.5}
+            size_hint:0.8, 0.2
+            text: "Created: "
+            color: 54, 73, 88, 1
+
+        Button:
+            pos_hint:{"x":0.2, "y": 0.1}
+            size_hint:0.6,0.2
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "left"
+
+
+<thankYouWindow>:
+    name: "thankyou"
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "[b]Thank you \n for doing yout part![/b]"
+                color: 54, 73, 88, 1
+                markup: True
+                halign: 'center'
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":.8}
+                font_size: (root.width**2 + root.height**2) / 11**4
+
+            Label:
+                text: "come back next week \n to earn more points."
+                color: 54, 73, 88, 1
+                halign: 'center'
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":.65}
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+
+        Button:
+            pos_hint:{"x":0.37,"y":0.38}
+            size_hint: 0.25, 0.08
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "SIGN OUT"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.login()
+
+<howItWorksWindow>:
+    name: "howitworks"
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            #HOW IT WORKS
+            Label:
+                text: "[b]How it works[/b]"
+                color: 54, 73, 88, 1
+                markup: True
+                halign: 'left'
+                size_hint: 0.58, -0.17
+                pos_hint: {"x":.1, "top":.8}
+                font_size: (root.width**2 + root.height**2) / 11.5**4
+
+            Label:
+                text: "Richard McClintock, a Latin scholar from\nHampden-Sydney College, \nis credited with discovering\nthe source behind the ubiquitous filler text.\nIn seeing a sample of lorem ipsum, \nhis interest was\npiqued by consectetur—a genuine."
+                color: 54, 73, 88, 1
+                halign: 'left'
+                size_hint: 0.7, -0.24
+                pos_hint: {"x":.1, "top":.65}
+                font_size: (root.width**2 + root.height**2) / 14.5**4
+
+            #REWARDS
+            Label:
+                text: "[b]Rewards[/b]"
+                color: 54, 73, 88, 1
+                markup: True
+                halign: 'left'
+                size_hint: 0.4, 0.35
+                pos_hint: {"x":.1, "top":.8}
+                font_size: (root.width**2 + root.height**2) / 11.5**4
+
+            Label:
+                text: "Richard McClintock, a Latin scholar from\nHampden-Sydney College, \nis credited with discovering\nthe source behind the ubiquitous filler text.\nIn seeing a sample of lorem ipsum, \nhis interest was\npiqued by consectetur—a genuine."
+                color: 54, 73, 88, 1
+                halign: 'left'
+                size_hint: 0.7, 0.29
+                pos_hint: {"x":.1, "top":.65}
+                font_size: (root.width**2 + root.height**2) / 14.5**4
+
+            #Accountability
+            Label:
+                text: "[b]Accountability[/b]"
+                color: 54, 73, 88, 1
+                markup: True
+                halign: 'left'
+                size_hint: 0.63, .9
+                pos_hint: {"x":.1, "top":.8}
+                font_size: (root.width**2 + root.height**2) / 11.5**4
+
+            Label:
+                text: "Richard McClintock, a Latin scholar from\nHampden-Sydney College, \nis credited with discovering\nthe source behind the ubiquitous filler text.\nIn seeing a sample of lorem ipsum, \nhis interest was\npiqued by consectetur—a genuine."
+                color: 54, 73, 88, 1
+                halign: 'left'
+                size_hint: 0.68, 0.84
+                pos_hint: {"x":.1, "top":.65}
+                font_size: (root.width**2 + root.height**2) / 14.5**4
+
+        Button:
+            pos_hint:{"x":0.37,"y":0.03}
+
+            size_hint: 0.25, 0.08
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text: "Home"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.login()
