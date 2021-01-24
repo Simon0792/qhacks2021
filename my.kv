@@ -315,3 +315,155 @@
             on_release:
                 root.manager.transition.direction = "right"
                 root.login()
+
+#################################################################################
+
+<Questionaaire>
+    name: "questionaaire"
+
+    # all variables we need
+    questionOne: questionOne
+    questionTwo: questionTwo
+    questionThree: questionThree
+    questionFour: questionFour
+    questionFive: questionFive
+
+    FloatLayout:
+        # Questionaaire
+        # Q.1
+        Label:
+            text:"Q1: \nline Two\nline Three"
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.05, "top":0.95}
+            size_hint: 0.4, 0.15
+
+        TextInput:
+            id: questionOne
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.11 , "top":0.82}
+            size_hint: 0.8, 0.05
+
+        # Q.2
+        Label:
+            text:"Q2: \nline Two\nline Three"
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.05, "top":0.77}
+            size_hint: 0.4, 0.15
+
+        TextInput:
+            id: questionTwo
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.11 , "top":0.64}
+            size_hint: 0.8, 0.05
+
+        # Q.3
+        Label:
+            text:"Q3: \nline Two\nline Three"
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.05, "top":0.59}
+            size_hint: 0.4, 0.15
+
+        TextInput:
+            id: questionThree
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.11 , "top":0.46}
+            size_hint: 0.8, 0.05
+
+        # Q.4
+        Label:
+            text:"Q4: \nline Two\nline Three"
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.05, "top":0.41}
+            size_hint: 0.4, 0.15
+
+        TextInput:
+            id: questionFour
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.11 , "top":0.28}
+            size_hint: 0.8, 0.05
+
+        # Q.5
+        Label:
+            text:"Q5: \nline Two\nline Three"
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            pos_hint: {"x":0.05, "top":0.23}
+            size_hint: 0.4, 0.15
+
+        TextInput:
+            id: questionFive
+            font_size: (root.width**2 + root.height**2) / 16**4
+            multiline: False
+            pos_hint: {"x": 0.11 , "top":0.10}
+            size_hint: 0.8, 0.05
+
+        #user's points
+        Label:
+            text: "Points: "
+            color: 255, 255, 255, 1
+            font_size: (root.width**2 + root.height**2) / 18**4
+            pos_hint: {"x":0.68, "top":1.04}
+            size_hint: 0.4, 0.15
+
+        #####------------------------------------
+        # page Uploading image
+        Button:
+            pos_hint:{"x":0.37,"y":0.35}
+            size_hint: 0.28, 0.06
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Upload"
+            #background_color: 60, 130, 207, 1
+            color: 1, 1, 1, 1
+
+            on_release: root.show_save()
+
+        Button:
+            text: 'Submit'
+            pos_hint:{"x":0.50,"y":0.50}
+            size_hint: 0.28, 0.06
+            font_size: (root.width**2 + root.height**2) / 13**4
+            #background_color: 60, 130, 207, 1
+            color: 1, 1, 1, 1
+            on_release: root.submit()
+
+
+# pop up window for
+# reference code from official website
+<SaveDialog>
+    #name: "savedialog"
+    text_input: text_input
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        color: 255, 255, 255, 1
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+        # the box to show the file path
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        # two buttons at the end for cancel and save
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Save"
+                on_release: root.save(filechooser.path, text_input.text)
