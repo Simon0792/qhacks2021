@@ -67,6 +67,9 @@ class LoginWindow(Screen):
         self.email.text = ""
         self.password.text = ""
 
+    def howWorks(self):
+        sm.current = "howitworks"
+
 
 # SCREEN 3 -- Main Screen
 # HERE IS WHERE WE MIGHT HAVE TO CHANGE THE QUESTIONS
@@ -212,7 +215,7 @@ for screen in screens:
     sm.add_widget(screen)
 
 # FIRST WINDOW -- HOME PAGE
-sm.current = "create"
+sm.current = "login"
 
 
 class MyMainApp(App):
