@@ -121,7 +121,7 @@ screens = [LoginWindow(name="login"), signUpWindow(name="create"),MainWindow(nam
 for screen in screens:
     sm.add_widget(screen)
 #FIRST WINDOW -- HOME PAGE
-sm.current = "howitworks"
+sm.current = "login"
 
 
 class MyMainApp(App):
