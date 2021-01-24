@@ -1,27 +1,32 @@
-#Import dependencies
+# Import dependencies
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.floatlayout import FloatLayout # for pop-up upload
-from kivy.factory import Factory # for pop-up upload
+from kivy.uix.floatlayout import FloatLayout  # for pop-up upload
+from kivy.factory import Factory  # for pop-up upload
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.core.window import Window
+from kivy.uix.image import Image
+from kivy.uix.behaviors import ButtonBehavior
+
 Window.size = (400, 700)
 
-userPts =0 # global
+userPts = 0  # global
 import os
 
-#SCREEN 1 -- Signup Screen
+
+# SCREEN 1 -- Signup Screen
 class signUpWindow(Screen):
     fullName = ObjectProperty(None)
     email = ObjectProperty(None)
     password = ObjectProperty(None)
 
-    #check for correct information
+    # check for correct information
     def submit(self):
-        if self.fullName.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
+        if self.fullName.text != "" and self.email.text != "" and self.email.text.count(
+                "@") == 1 and self.email.text.count(".") > 0:
             if self.password != "":
                 self.reset()
                 sm.current = "login"
@@ -39,17 +44,18 @@ class signUpWindow(Screen):
         self.password.text = ""
         self.fullName.text = ""
 
-#SCREEN 2 -- Login screen
+
+# SCREEN 2 -- Login screen
 class LoginWindow(Screen):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
 
-    #If user and pass fields are not empty, grant access, else deny.
+    # If user and pass fields are not empty, grant access, else deny.
     def loginBtn(self):
         if self.email.text != "" and self.password.text != "":
             MainWindow.current = self.email.text
             self.reset()
-            sm.current = "thankyou"
+            sm.current = "questionaaire"
         else:
             invalidLogin()
 
@@ -62,8 +68,8 @@ class LoginWindow(Screen):
         self.password.text = ""
 
 
-#SCREEN 3 -- Main Screen
-#HERE IS WHERE WE MIGHT HAVE TO CHANGE THE QUESTIONS
+# SCREEN 3 -- Main Screen
+# HERE IS WHERE WE MIGHT HAVE TO CHANGE THE QUESTIONS
 class MainWindow(Screen):
     questionOne = ObjectProperty(None)
     questionTwo = ObjectProperty(None)
@@ -71,12 +77,12 @@ class MainWindow(Screen):
     questionFour = ObjectProperty(None)
     questionFive = ObjectProperty(None)
 
-    #this could become the submit button
+    # this could become the submit button
     def logOut(self):
-        #Here we could link the THANK YOU screen
+        # Here we could link the THANK YOU screen
         sm.current = "login"
 
-    #probably useless
+    # probably useless
     '''
     def on_enter(self, *args):
         password, name, created = db.get_user(self.current)
@@ -85,42 +91,48 @@ class MainWindow(Screen):
         self.created.text = "Created On: " + created
     '''
 
-#SCREEN 4 -- Thank you screen
+
+# SCREEN 4 -- Thank you screen
 class thankYouWindow(Screen):
 
     def logOut(self):
         sm.current = "login"
 
-#SCREEN 5 -- How it works screen
+
+# SCREEN 5 -- How it works screen
 class howItWorksWindow(Screen):
 
     def homePage(self):
         sm.current = "login"
 
-
+# SCREEN 6
 # Questionaaire & upload
-#TODO: was "Screen" type 
+# TODO: was "Screen" type
 class Questionaaire(Screen):
-    # class variable - questionaaire 
+    # class variable - questionaaire
     questionOne = ObjectProperty(None)
     questionTwo = ObjectProperty(None)
     questionThree = ObjectProperty(None)
-    questionFour = ObjectProperty(None) 
+    questionFour = ObjectProperty(None)
     questionFive = ObjectProperty(None)
-        
-    
+    conditions = ObjectProperty(None)
+
+#CHECK
+    #add if condition true
+
+    def checkedBox(self):
+        self.ids['buttonQuest'].background_color = 62, 78, 254, 0
     def submit(self):
-        if self.questionOne.text != 'Y' or self.questionTwo.text != 'Y' \
-           or self.questionThree.text != 'Y' or self.questionFour.text != 'Y' \
-           or self.questionFive.text != 'Y':
-            invalidInput()
+        if self.questionOne.state == 'down' and self.questionTwo.state == 'down' \
+                and self.questionThree.state == 'down' and self.questionFour.state == 'down' \
+                and self.questionFive.state == 'down' and self.conditions.state == 'down':
+                    global userPts
+                    userPts += 5
+                    self.reset()
+                    sm.current = "thankyou"
         else:
-            global userPts
-            userPts+= 5
-            self.reset()
-            sm.current = "thankyou"
-    
-    
+            invalidInput()
+
     def reset(self):
         self.questionOne.text = ""
         self.questionTwo.text = ""
@@ -129,7 +141,7 @@ class Questionaaire(Screen):
         self.questionFive.text = ""
 
     def dismiss_popup(self):
-        self._popup.dismiss() 
+        self._popup.dismiss()
 
     def show_save(self):
         content = SaveDialog(save=self.save, cancel=self.dismiss_popup)
@@ -141,7 +153,9 @@ class Questionaaire(Screen):
         with open(os.path.join(path, filename), 'w') as stream:
             stream.write(self.text_input.text)
         self.dismiss_popup()
-    
+    def rememberPop(self):
+        remember()
+
 
 # Popup screen for upload
 class SaveDialog(FloatLayout):
@@ -150,31 +164,37 @@ class SaveDialog(FloatLayout):
     cancel = ObjectProperty(None)
 
 
-#PAGES END
+# PAGES END
 class WindowManager(ScreenManager):
     pass
 
 
 def invalidLogin():
     pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
+                content=Label(text='Invalid username or password.'),
+                size_hint=(None, None), size=(400, 400))
     pop.open()
 
 
 def invalidForm():
     pop = Popup(title='Invalid Form',
-                  content=Label(text='Please fill in all fields with valid information.'),
-                  size_hint=(None, None), size=(400, 400))
+                content=Label(text='Please fill in all fields with valid information.'),
+                size_hint=(None, None), size=(400, 400))
 
     pop.open()
+
 
 def invalidInput():
     pop = Popup(title='Invalid Input',
-            content=Label(text='All have to be Yes.'),
-            size_hint=(None, None), size=(400, 400))
+                content=Label(text='All have to be Yes.'),
+                size_hint=(None, None), size=(400, 400))
     pop.open()
-    
+
+def remember():
+    pop = Popup(title='Remember:',
+                content=Label(text='•Blue Bin: plastic, metal\nand glass packaging\n\n•Grey Box: paper products,cardboard and plastic bags\n\n•Green Bin: food waste, soiled paper products\nand yard waste\n\n•Garbage: non-hazardous waste\nthat cannot be reused, recycled or composted'),
+                size_hint=(None, None), size=(400, 300))
+    pop.open()
 
 
 kv = Builder.load_file("my.kv")
@@ -190,9 +210,9 @@ screens = [Questionaaire(name="questionaaire"),
 
 for screen in screens:
     sm.add_widget(screen)
-    
-#FIRST WINDOW -- HOME PAGE
-sm.current = "questionaaire"
+
+# FIRST WINDOW -- HOME PAGE
+sm.current = "login"
 
 
 class MyMainApp(App):
